@@ -39,6 +39,13 @@ $('#register form').on('submit', function (e) {
             } else {
                 $('#username').val('')
             }
+        },
+        complete: function (res) {
+            var info = JSON.parse(res.responseText);
+            if (info.status == 1 && info.message === "身份认证失败！") {
+                localStorage.removeItem('token');
+                location.href = '../login.html';
+            }
         }
     })
 
