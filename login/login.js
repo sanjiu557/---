@@ -28,7 +28,7 @@ $('#register form').on('submit', function (e) {
     e.preventDefault();
     var params = $(this).serialize();
     $.ajax({
-        url: "http://ajax.frontend.itheima.net/api/reguser",
+        url: "/api/reguser",
         type: "post",
         data: params,
         success: function (res) {
@@ -40,13 +40,13 @@ $('#register form').on('submit', function (e) {
                 $('#username').val('')
             }
         },
-        complete: function (res) {
-            var info = JSON.parse(res.responseText);
-            if (info.status == 1 && info.message === "身份认证失败！") {
-                localStorage.removeItem('token');
-                location.href = '../login.html';
-            }
-        }
+        // complete: function (res) {
+        //     var info = JSON.parse(res.responseText);
+        //     if (info.status == 1 && info.message === "身份认证失败！") {
+        //         localStorage.removeItem('token');
+        //         location.href = '../login.html';
+        //     }
+        // }
     })
 
 });
@@ -54,7 +54,7 @@ $('#login form').on('submit', function (e) {
     e.preventDefault();
     var params = $(this).serialize();
     $.ajax({
-        url: "http://ajax.frontend.itheima.net/api/login",
+        url: "/api/login",
         type: "post",
         data: params,
         success: function (res) {
